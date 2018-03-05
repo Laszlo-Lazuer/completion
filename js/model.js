@@ -25,7 +25,7 @@
 			title: title.trim()
 		};
 
-		this.storage.save(newItem, callback);
+		this.storage.save(newItem, callback, complete);
 	};
 
 	/**
@@ -67,6 +67,7 @@
 	 * @param {function} callback The callback to fire when the update is complete.
 	 */
 	Model.prototype.update = function (id, data, callback) {
+		console.log(data);
 		this.storage.save(data, callback, id);
 	};
 
