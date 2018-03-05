@@ -32,9 +32,10 @@
 		that.view.bind('itemRemove', function (item) {
 			that.removeItem(item.id);
 		});
-        
-        that.view.bind('itemComplete', function (item) {
-            that.completeItem(item.id);
+
+    that.view.bind('itemComplete', function (item) {
+				alert('test');
+				that.completeItem(item.id);
 		});
 
 	}
@@ -130,6 +131,22 @@
 	 * storage
 	 */
 	Controller.prototype.removeItem = function (id) {
+		var that = this;
+		that.model.remove(id, function () {
+			that.view.render('removeItem', id);
+		});
+
+		that._filter();
+	};
+
+	/**
+	 * By giving it an ID it'll find the DOM element matching that ID,
+	 * remove it from the DOM and also remove it from storage.
+	 *
+	 * @param {number} id The ID of the item to remove from the DOM and
+	 * storage
+	 */
+	Controller.prototype.completeItem = function (id) {
 		var that = this;
 		that.model.remove(id, function () {
 			that.view.render('removeItem', id);
